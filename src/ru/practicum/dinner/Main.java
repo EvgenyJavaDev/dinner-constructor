@@ -14,17 +14,18 @@ public class Main {
 
         while (true) {
             printMenu();
+
             String command = scanner.nextLine();
 
             switch (command) {
-                case "1":
-                    addNewDish();
-                    break;
-                case "2":
-                    generateDishCombo();
-                    break;
-                case "3":
+                case "1" -> addNewDish();
+                case "2" -> generateDishCombo();
+                case "3" -> {
+                    System.out.println("Программа завершена по команде пользователя.\n"
+                            + "Благодарим за использование нашего приложения.");
                     return;
+                }
+                default -> System.out.println("Извините, такой команды нет. Повторите ввод команды.");
             }
         }
     }
@@ -38,11 +39,15 @@ public class Main {
 
     private static void addNewDish() {
         System.out.println("Введите тип блюда:");
-        String dishType = scanner.nextLine();
-        System.out.println("Введите название блюда:");
-        String dishName = scanner.nextLine();
 
+        String dishType = scanner.nextLine();
+
+        System.out.println("Введите название блюда:");
+
+        String dishName = scanner.nextLine();
         // добавьте новое блюдо, с помощью метода DinnerConstructor addNewDish
+        dc.addNewDish(dishType, dishName);
+
     }
 
     private static void generateDishCombo() {
@@ -58,7 +63,7 @@ public class Main {
         //реализуйте ввод типов блюд
         ??? selectedTypes = new ArrayList<>();
         while (!nextItem.isEmpty()) { //варианты вводит пользователь
-            if (dc.???(nextItem)) { //но вы должны проверить, существуют ли эти блюда в хранилище с помощью метода DinnerConstructor checkType
+            if (dc.checkDishType(nextItem)) { //но вы должны проверить, существуют ли эти блюда в хранилище с помощью метода DinnerConstructor checkType
                 selectedTypes.???(nextItem); //выбранное блюдо добавьте в список вариантов
             } else {
                 System.out.println("Такой тип блюд мы еще не умеем готовить. Попробуйте что-нибудь другое!");

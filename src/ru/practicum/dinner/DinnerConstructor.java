@@ -6,20 +6,28 @@ import java.util.Random;
 
 public class DinnerConstructor {
 
-    HashMap<?, ?> dinnersByType = ??? // хранилище блюд: ключ — тип блюда (например, "Суп"), значение — список названий блюд этого типа
+    HashMap<String, ArrayList<String>> dinnersByType = new HashMap<>(); // хранилище блюд: ключ — тип блюда (например, "Суп"), значение — список названий блюд этого типа
     Random random = new Random(); //этот вспомогательный класс поможет сделать произвольные сочетания блюд
+
+    /**
+     * Для проверки, что такой тип блюд действительно существует, можно создать в классе
+     * DinnerConstructor метод checkType(String type).
+     * Он будет возвращать true или false в зависимости от того, существует ли такой тип.
+     */
 
     //в этом методе мы добавляем компонент в подборку
     public void addNewDish(String dishType, String dishName) {
-        ??? dishesForType; //переменая для списка блюд
-        if (dinnersByType.???(dishType)) { //здесь мы должны проверить, содержит ли наше хранилище такое блюдо
-            dishesForType = ??//если мы уже работали с этим типом - используем существующий список
-        } else {
-            dishesForType = //для нового типа блюд создаём пустой список компонентов.
-            dinnersByType.???(dishType, dishesForType); //запоминаем новый список в хранилище
-        }
+         ArrayList<String> dishesForType = new ArrayList<>(); //переменая для списка блюд
 
-        dishesForType.???(dishName); //независимо от того, новый это список или существующий - добавим в него конкретное блюдо
+        if (checkDishType(dishType)) { //здесь мы должны проверить, содержит ли наше хранилище такое блюдо  /*dinnersByType.containsKey(dishType)*/
+            dishesForType = dinnersByType.get(dishType);//если мы уже работали с этим типом - используем существующий список
+        } else {
+
+            dishesForType = new ArrayList<>(); //для нового типа блюд создаём пустой список компонентов.,
+
+            dinnersByType.put(dishType, dishesForType); //запоминаем новый список в хранилище
+        }
+        dishesForType.add(dishName); //независимо от того, новый это список или существующий - добавим в него конкретное блюдо
     }
 
     //метод для генерирования вариантов комбинации блюд
@@ -32,10 +40,9 @@ public class DinnerConstructor {
         return combos;
     }
 
-
     //метод для проверки дубликатов блюд
-    public boolean checkType(String type) {
-        return dinnersByType.???(type); //если хранилище уже содержит такое блюдо - вернём true
+    public boolean checkDishType(String checkType) {
+        return dinnersByType.containsKey(checkType); //если хранилище уже содержит такое блюдо - вернём true
     }
 
     //метод для генерирования одной комбинации блюд
