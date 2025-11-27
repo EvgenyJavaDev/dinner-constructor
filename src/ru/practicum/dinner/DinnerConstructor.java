@@ -2,11 +2,10 @@ package ru.practicum.dinner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class DinnerConstructor {
+    RandomizerDish randomDish = new RandomizerDish();
     HashMap<String, ArrayList<String>> dinnersByType = new HashMap<>();
-    Random random = new Random();
 
     public void addNewDish(String dishType, String dishName) {
         ArrayList<String> dishesForType;
@@ -44,19 +43,10 @@ public class DinnerConstructor {
         for (String dishType : dishTypes) {
             ArrayList<String> availableDishes = dinnersByType.get(dishType);
 
-            String selectedDish = getRandomDish(availableDishes);
+            String selectedDish = randomDish.getRandomDish(availableDishes);
 
             selectedDishes.add(selectedDish);
         }
         return selectedDishes;
     }
-
-    private String getRandomDish(ArrayList<String> availableDishes) {
-        int numberOfDishesForType = availableDishes.size();
-        int dishIndex = random.nextInt(numberOfDishesForType);
-        String selectedDish = availableDishes.get(dishIndex);
-
-        return selectedDish;
-    }
-
 }
