@@ -24,7 +24,6 @@ public class DinnerConstructor {
     }
 
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
-
         ArrayList<ArrayList<String>> combos = new ArrayList<>();
 
         for (int i = 0; i < comboNumber; i++) {
@@ -52,7 +51,6 @@ public class DinnerConstructor {
     }
 
     private ArrayList<String> generateCombo(ArrayList<String> dishTypes) {
-
         ArrayList<String> selectedDishes = new ArrayList<>();
 
         for (String dishType : dishTypes) {
