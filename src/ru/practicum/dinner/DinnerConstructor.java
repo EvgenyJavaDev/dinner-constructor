@@ -8,17 +8,19 @@ public class DinnerConstructor {
     HashMap<String, ArrayList<String>> dinnersByType = new HashMap<>();
 
     public void addNewDish(String dishType, String dishName) {
-        ArrayList<String> dishesForType;
+        ArrayList<String> dishesForType = new ArrayList<>();
 
         if (checkDishType(dishType)) {
             dishesForType = dinnersByType.get(dishType);
         } else {
-
-            dishesForType = new ArrayList<>();
-
             dinnersByType.put(dishType, dishesForType);
         }
-        dishesForType.add(dishName);
+        if (checkDishName(dishType, dishName)) {
+            dishesForType.add(dishName);
+        } else {
+            System.out.println("Такое наименование блюда уже существует, вы его вносили в меню ранее.");
+            System.out.println();
+        }
     }
 
     public ArrayList<ArrayList<String>> generateCombos(int comboNumber, ArrayList<String> dishTypes) {
@@ -32,7 +34,20 @@ public class DinnerConstructor {
         return combos;
     }
 
+    public boolean checkDishName(String dishType, String dishName) {
+        boolean isNoContains = true;
+        ArrayList<String> name = dinnersByType.get(dishType);
+
+        for (String dish : name) {
+            if (dish.equals(dishName)) {
+                isNoContains = false;
+            }
+        }
+        return isNoContains;
+    }
+
     public boolean checkDishType(String checkType) {
+
         return dinnersByType.containsKey(checkType);
     }
 
