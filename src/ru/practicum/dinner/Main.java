@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class Main {
     static DinnerConstructor dc;
     static Scanner scanner;
+    static CreatorMenu creatorMenu;
 
     public static void main(String[] args) {
         dc = new DinnerConstructor();
         scanner = new Scanner(System.in);
-        CreatorMenu creatorMenu = new CreatorMenu(scanner);
+        creatorMenu = new CreatorMenu(scanner);
 
         System.out.println("~".repeat(40));
         System.out.println("            КОНСТРУКТОР ОБЕДОВ");
