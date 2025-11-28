@@ -14,9 +14,11 @@ public class DinnerConstructor {
             dishesForType = dinnersByType.get(dishType);
         } else {
             dinnersByType.put(dishType, dishesForType);
+            System.out.println("Вы внесли новый тип блюда в меню.");
         }
         if (checkDishName(dishType, dishName)) {
             dishesForType.add(dishName);
+            System.out.println("Вы вынесли новое  наименование блюда  в меню.");
         } else {
             System.out.println("Такое наименование блюда уже существует, вы его вносили в меню ранее.");
             System.out.println();
@@ -33,13 +35,14 @@ public class DinnerConstructor {
         return combos;
     }
 
-    public boolean checkDishName(String dishType, String dishName) {
+    private boolean checkDishName(String dishType, String dishName) {
         boolean isNoContains = true;
         ArrayList<String> name = dinnersByType.get(dishType);
 
         for (String dish : name) {
             if (dish.equals(dishName)) {
                 isNoContains = false;
+                break;
             }
         }
         return isNoContains;

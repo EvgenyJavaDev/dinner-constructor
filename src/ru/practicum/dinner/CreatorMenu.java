@@ -9,6 +9,7 @@ public class CreatorMenu {
     DinnerConstructor dc = new DinnerConstructor();
 
     CreatorMenu(Scanner scanner) {
+
         this.scanner = scanner;
     }
 
