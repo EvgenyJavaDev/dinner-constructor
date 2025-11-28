@@ -18,7 +18,7 @@ public class DinnerConstructor {
         }
         if (checkDishName(dishType, dishName)) {
             dishesForType.add(dishName);
-            System.out.println("Вы вынесли новое  наименование блюда  в меню.");
+            System.out.println("Вы внесли новое  наименование блюда  в меню.");
         } else {
             System.out.println("Такое наименование блюда уже существует, вы его вносили в меню ранее.");
             System.out.println();
