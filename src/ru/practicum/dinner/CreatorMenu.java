@@ -5,11 +5,36 @@ import java.util.Scanner;
 
 public class CreatorMenu {
     public static final String NEXT_ITEM_NO_EMPTY = "-1";
-    Scanner scanner;
+    Scanner scanner = new Scanner(System.in);
     DinnerConstructor dc = new DinnerConstructor();
 
-    CreatorMenu(Scanner scanner) {
-        this.scanner = scanner;
+    public void chooseCommand() {
+        while (true) {
+            printMenu();
+
+            String command = scanner.nextLine();
+
+            switch (command) {
+                case "1" -> addNewDish();
+                case "2" -> generateDishCombo();
+                case "3" -> {
+                    System.out.println("Программа завершена по команде пользователя.\n"
+                            + "Благодарим за использование нашего приложения.");
+                    return;
+                }
+                default -> System.out.println("Извините, такой команды нет. Повторите ввод команды.");
+            }
+        }
+    }
+
+    private void printMenu() {
+        System.out.println("=".repeat(35));
+        System.out.println("Выберите команду:");
+        System.out.println("1 - Добавить новое блюдо");
+        System.out.println("2 - Сгенерировать комбинации блюд");
+        System.out.println("3 - Выход");
+        System.out.println("=".repeat(35));
+        System.out.println();
     }
 
     public void addNewDish() {
